@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 import statsmodels.api as sm
-import numpy as np
 from scipy.stats import spearmanr
 from scipy.stats import pearsonr
 import pandas as pd
@@ -19,11 +18,11 @@ print(modelo.summary())
 plt.figure(figsize=(10, 6))
 plt.scatter(df_mean['season'], df_mean['salary'], label='Promedio por temporada')
 plt.plot(df_mean['season'], modelo.predict(X), color='red', label='Pendiente de Regresión')
-plt.xlabel('temporadas ')
+plt.xlabel('Temporadas')
 plt.ylabel('Promedio de salario')
 plt.title('Regresion lineal: Promedio de salarios totales por temporada')
 plt.legend()
-plt.savefig("RegresionPorTemporada.png")
+plt.savefig("Practica 6/RegresionPorTemporada.png")
 plt.tight_layout()
 plt.close()
 print(df_mean)
@@ -49,15 +48,15 @@ Y = df_pos['salary']
 modelo = sm.OLS(Y, X).fit()
 print(modelo.summary())
 
-#Grafica 
+#Grafica para la pos de centro
 plt.figure(figsize=(10, 6))
 plt.scatter(df_pos['season'], df_pos['salary'], label='Promedio por temporada')
 plt.plot(df_pos['season'], modelo.predict(X), color='red', label='Pendiente de Regresión')
-plt.xlabel('temporadas')
+plt.xlabel('Temporadas')
 plt.ylabel('Promedio de salarios para los centros')
 plt.title('Regresion lineal: Promedio de salarios de los centros por temporada')
 plt.legend()
-plt.savefig("RegresionPorPosicion(Centro).png")
+plt.savefig("Practica 6/RegresionPorPosicion(Centro).png")
 plt.tight_layout()
 plt.close()
 print(df_pos)
@@ -83,15 +82,15 @@ Y = df_team['salary']
 modelo = sm.OLS(Y, X).fit()
 print(modelo.summary())
 
-#Grafica 
+#Grafica de los Chicago Bulls
 plt.figure(figsize=(10, 6))
 plt.scatter(df_team['season'], df_team['salary'], label='Promedio por temporada')
 plt.plot(df_team['season'], modelo.predict(X), color='red', label='Pendiente de Regresión')
-plt.xlabel('temporadas')
+plt.xlabel('Temporadas')
 plt.ylabel('Promedio de salarios para Chicago Bulls')
 plt.title('Regresion lineal: Promedio de salarios de los Chicago Bulls por temporada')
 plt.legend()
-plt.savefig("RegresionPorEquipo(Bulls).png")
+plt.savefig("Practica 6/RegresionPorEquipo(Bulls).png")
 plt.tight_layout()
 plt.close()
 print(df_team)
