@@ -35,5 +35,5 @@ df_by_postot.to_csv('Practica3/salaries_per_pos_total.csv',index = False)
 #salarios totales de cada posicion por equipo
 df_by_posteam = df.groupby(["team","position"]).agg({'salary': ['sum','count','mean','min','max']})
 df_by_posteam = df_by_posteam.reset_index()
-print_tabulate(df_by_posteam.head())
+print_tabulate(df_by_posteam.head
 df_by_posteam.to_csv('Practica3/salaries_per_pos_per_team.csv',index = False)

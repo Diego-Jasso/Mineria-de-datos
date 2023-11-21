@@ -23,4 +23,5 @@ df_by_pos = df.groupby(["season","position"])[['salary']].mean()
 df_by_pos.boxplot(by = 'position', figsize=(27,18))
 plt.xticks(rotation=90)
 plt.savefig("Practica 4/positions.png")
+
 plt.close()
