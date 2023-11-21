@@ -6,6 +6,7 @@ import numpy as np
 def get_cmap(n, name="hsv"):
     return plt.cm.get_cmap(name, n)
 
+#funcion para nuestro scatter
 def scatter_group_by(
     file_path: str, df: pd.DataFrame, x_column: str, y_column: str, label_column: str
 ):
@@ -19,11 +20,11 @@ def scatter_group_by(
     plt.savefig(file_path)
     plt.close()
 
-
+#Funcion para calcular distancia euclideana
 def euclidean_distance(p_1: np.array, p_2: np.array) -> float:
     return np.sqrt(np.sum((p_2 - p_1) ** 2))
 
-
+#funcion para calcular los vecinos mas cercanos
 def k_nearest_neightbors(
     points: List[np.array], labels: np.array, input_data: List[np.array], k: int
 ):
@@ -45,11 +46,10 @@ def k_nearest_neightbors(
 df = pd.read_csv("edited-salaries.csv")
 df_mean = df.groupby(['season','position'])['salary'].mean().reset_index()
 
-# Se usan en los k vecinos para que no haya problema con los labels del scatter
 label_to_number = {label: i for i, label in enumerate(df_mean['position'].unique())}
 number_to_label = {i: label for i, label in enumerate(df_mean['position'].unique())}
 
-#Llamamos al scatter mandando como eje x la temporada, el y como el salario, y los labels que sean las posiciones
+#Usamos la funcion de scatter mandando como eje x la temporada, eje y como el salario, y los labels como las posiciones
 scatter_group_by("Practica7/positions_scatter.png", df_mean, "season", "salary", "position")
 list_t = [
     (np.array(tuples[0:1]), tuples[2])
@@ -66,7 +66,7 @@ print(kn)
 label_to_number = {label: i for i, label in enumerate(df['range'].unique())}
 number_to_label = {i: label for i, label in enumerate(df['range'].unique())}
 
-#Llamamos al scatter mandando como eje x la temporada, el y como el salaroi, y los labels que sean las posiciones
+#Llamamos al scatter mandando como eje x el puesto ,eje y como el salario, y los labels que sea el rango del salario
 scatter_group_by("Practica7/salaries_scatter.png", df, "rank", "salary", "range")
 list_t = [
     (np.array(tuples[0:1]), tuples[2])
