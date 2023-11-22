@@ -42,15 +42,24 @@ def plt_lr(df: pd.DataFrame, x:str, y: str, m: float, b: float, r2: float, r2_ad
 
 # Lectura del dataframe 
 df = pd.read_csv("edited-salaries.csv")
-# Prediccion para los salarios de cada temporada
-eliminar = ['team','rank','position','range','name']
+# Prediccion para los salarios por rango de cada jugador 
+eliminar = ['team','season','position','range','name']
 df_mean = df.drop(eliminar, axis=1)
 df_mean.reset_index(inplace=True)
 df_mean = df_mean.dropna()
-lin = linear_reg(df_mean, "season", "salary")
-plt_lr(df=df_mean, x="season", y="salary", **lin)
+lin = linear_reg(df_mean, "rank", "salary")
+plt_lr(df=df_mean, x="rank", y="salary", **lin)
 plt.xticks(rotation=90)
-plt.savefig('Practica9/prediccionSalariopromedio.png')
+plt.savefig('Practica9/prediccionSalarioporrango.png')
 plt.close()
 
-
+#Prediccion para los salarios a lo largo de las temporadas
+eliminar2 = ['team','rank','position','range','name']
+df_salary = df.drop(eliminar2, axis=1)
+df_salary.reset_index(inplace=True)
+df_salary = df_salary.dropna()
+lin = linear_reg(df_salary, "season", "salary")
+plt_lr(df=df_salary, x="season", y="salary", **lin)
+plt.xticks(rotation=90)
+plt.savefig('Practica9/prediccionSalariototal.png')
+plt.close()
